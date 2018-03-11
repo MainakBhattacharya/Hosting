@@ -8,9 +8,21 @@
 		function codeAddress() {
 			var e = document.getElementById("disp_image");
 			var e_class = document.getElementById("img_class");
+			var info_div = document.getElementById("info_layer");
 			var num = Math.floor(Math.random() * 33) + 1; // 0...6
+			
+			var display_info = "";
+			if (num < 10){
+				var display_info = num;
+			}else if(num < 19){
+				var display_info = String.fromCharCode(num-10+65);
+			}else if(num >= 19){
+				var display_info = String.fromCharCode(num-10+65+1);
+			}
+			
+			info_div.innerHTML = "Displayed Image is :: <b>" + display_info + "<b>";
 			e.src = 'images/' + num + '.jpg';
-			e_class.value = num;
+			e_class.value = display_info;
 		}
 	</script>
     <script src="js/jquery.js"></script>
@@ -29,7 +41,8 @@
 			Below is the sample model Image for required pose.
 		</h2>
 	</div>
-	<img id="disp_image" src="images/1.jpg" height="480" width="640" class="w3-border w3-border-black w3-hover-border-red w3-round w3-margin"></img><br>
+	<div id="info_layer">Wait... Image Loading</div>
+	<img id="disp_image" src="images/_.jpg" height="480" width="640" class="w3-border w3-border-black w3-hover-border-red w3-round w3-margin" alt="Image is loading ... Please Wait..."></img><br>
 	<div id="targetLayer">Upload images</div>
 	<div align="center">
 		<div class="w3-container w3-blue" style="width:50%">
@@ -41,12 +54,63 @@
 			<input name="file" id="uploadfile" type="file">
 			<input id="img_class" type="hidden" name="imageClass" value="">
 
-			<p><label>Param 1</label>
-			<input class="w3-input" type="text">
-			<label>Param 2</label>
-			<input class="w3-input" type="text"></p>
+			<!-- <p><label>Param 1</label>
+			<input class="w3-input" type="text"> -->
 			
-			<p><button onclick="codeAddress();">Try next pose</button>
+			<!-- Age -->
+			<p><label>Age</label>
+			<select name="Age">
+			  <option value="0">Select Option</option>
+			  <option value="1">&lt;= 12</option>
+			  <option value="2">13-39</option>
+			  <option value="3">&gt;= 40</option>
+			</select></p>
+			
+			<!-- Background -->
+			<p><label>Background</label>
+			<select name="Background">
+			  <option value="0">Select Option</option>
+			  <option value="1">Plain</option>
+			  <option value="2">Busy</option>
+			</select></p>
+			
+			<!-- Depth -->
+			<p><label>Distance from camera</label>
+			<select name="Depth">
+			  <option value="0">Select Option</option>
+			  <option value="1">&lt;= 1 Feet</option>
+			  <option value="2">3-4 Feet</option>
+			  <option value="3">&gt;= 7 Feet</option>
+			</select></p>
+			
+			<!-- Lightening condition -->
+			<p><label>Light conditions</label>
+			<select name="light">
+			  <option value="0">Select Option</option>
+			  <option value="1">Daylight</option>
+			  <option value="2">Low light (Natural)</option>
+			  <option value="3">Artificial Light</option>
+			</select></p>
+			
+			<!-- Image Resolution -->
+			<p><label>Image Quality</label>
+			<select name="quality">
+			  <option value="0">Select Option</option>
+			  <option value="1">Camera</option>
+			  <option value="2">DSLR</option>
+			</select></p>
+			
+			<!-- Skintone -->
+			<p><label>Skintone</label>
+			<select name="skin">
+			  <option value="0">Select Option</option>
+			  <option value="1">Dark tone</option>
+			  <option value="2">Medium tone</option>
+			  <option value="3">Light tone</option>
+			</select></p>
+			
+			
+			<p><button type="button" onclick="codeAddress();">Try next pose</button>
 			<input id="submit" type="submit"></p>
 		</form>
 	<script type="text/javascript">

@@ -118,6 +118,7 @@
 			  <option value="3">Full sleeve</option>
 			</select></p>
 			
+			
 			<p><button type="button" onclick="codeAddress();">Try next pose</button>
 			<input id="submit" type="submit"></p>
 		</form>
@@ -135,17 +136,17 @@
 					timeout:240000,
 					beforeSend: function()
 					{
-						$("#targetLayer").html("Uploading");	
+						$("#targetLayer").html("<font color='red'><b>Uploading... (This may take a few seconds)<b></font>");	
 					},
 					success: function(data)
 						{
 
-						$("#targetLayer").html(data);
+						$("#targetLayer").html("<font color='green'><b>" + data + "<b></font>");
 						codeAddress();
 						},
 					error: function() 
 						{
-						$("#targetLayer").html("ERROR");
+						$("#targetLayer").html("<font color='red'><b>ERROR<b></font>");
 						}	        
 				});
 			}));
